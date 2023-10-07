@@ -1,5 +1,10 @@
-# Hactoberfest2023-Python-mini-programs
-Add simple to advanced programs to learn basics and implement it practically
+# Hactoberfest2023-Python-mini-programs-website
+📌Our aim is to build a website showing all simple to advanced level python programs and their contributors for this repository.
+
+#### For that our to-do tasks are-
+ 1. Add simple to advanced programs to learn basics and implement it practically
+ 2. Making a html,css and javascript page to form a working website showing all the contributors and along with their contributions in this repository.
+
 
 <div align="left">
 
@@ -13,12 +18,12 @@ Add simple to advanced programs to learn basics and implement it practically
  ### 🌟 How to Contribute:
  1. Register your GitHub ID on [Hackoberfest Website](https://hacktoberfest.com/auth/)
  2. Fork the repository.
- 3. Feel free to share a Python program, whether it's a straightforward game, a data structures and algorithms (DSA) problem, or any other Python-related project.
+ 3. Add a python related project or contribute into the website for this repository.
  4. Commit and push your changes.
  5. Create a pull request to the original repository.
  6. Your pull request will be reviewed and merged.
 
 ### 🎯 Goal
-- 🌱 The goal is to foster collaboration and learning, so we welcome programs ranging from basic to advanced levels.
+- 🌱 The goal is to foster collaboration and learning, so we welcome programs ranging from basic to advanced levels to learn practically.
 
 ### Happy Coding...Happy Learning❤✌😊🚀!!
