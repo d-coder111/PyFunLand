@@ -1,0 +1,110 @@
+import copy
+def score(state):
+    for i in range(3):
+        if state[i][0]=='X' and state[i][1]=='X' and state[i][2]=='X':
+            return 1
+        if state[0][i]=='X' and state[1][i]=='X' and state[2][i]=='X':
+            return 1
+        if state[i][0]=='O' and state[i][1]=='O' and state[i][2]=='O':
+            return -1
+        if state[0][i]=='O' and state[1][i]=='O' and state[2][i]=='O':
+            return -1
+    if state[0][0]=='X' and state[1][1]=='X' and state[2][2]=='X':
+        return 1
+    if state[0][2]=='X' and state[1][1]=='X' and state[2][0]=='X':
+        return 1
+    if state[0][0]=='O' and state[1][1]=='O' and state[2][2]=='O':
+        return -1
+    if state[0][2]=='O' and state[1][1]=='O' and state[2][0]=='O':
+        return -1
+    return 0
+def isfilled(state):
+    if len(state[0])==0:
+        return True
+    for i in range(3):
+        for j in range(3):
+            if state[i][j]==" ":
+                return False
+    return True
+def Max_value(state,alpha,beta):
+    if score(state)!=0:
+        return score(state)
+    if isfilled(state):
+        return 0
+    u=-2
+    for i in range(3):
+        for j in range(3):
+            if state[i][j]==" ":
+                s2=copy.deepcopy(state)
+                s2[i][j]="X"
+                m=Min_value(s2,alpha,beta)
+                alpha=max(alpha,m)
+                if alpha>=beta:
+                    return m
+                u=max(u,m)
+    return u
+def Min_value(state,alpha,beta):
+    if score(state)!=0:
+        return score(state)
+
+    if isfilled(state):
+        return 0
+    u=2
+    for i in range(3):
+        for j in range(3):
+            if state[i][j]==" ":
+                s2=copy.deepcopy(state)
+                s2[i][j]="O"
+                m=Max_value(s2,alpha,beta)
+                beta=min(beta,m)
+                if alpha>=beta:
+                    return m
+                u=min(u,m)
+    return u
+def Minimax(state):
+    alpha=-100
+    beta=100
+    if score(state)!=0:
+        if score(state)==1:
+            print("Computer Won...Try again!")
+        else:
+            print("Hurray!Player Won...")
+        return [[]]
+    if isfilled(state):
+        print("Hurray!It's Draw...")
+        return [[]]
+    next_state=state
+    a=-2
+    for i in range(3):
+        for j in range(3):
+            if state[i][j]==" ":
+                s2=copy.deepcopy(state)
+                s2[i][j]="X"
+                m=Min_value(s2,alpha,beta)
+                if m>a:
+                    next_state=s2
+                    a=m
+    return next_state
+init_state=[[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+print("Enter your input according to this positions :")
+print(0," ",1," ", 2)
+print(3," ",4, " ",5)
+print(6," ",7, " ",8)
+print()
+print("STARTING GAME.....")
+print()
+state=init_state
+while len(state[0])!=0:
+    state=Minimax(state)
+    if len(state[0])!=0:
+        print("Computer's turn:")
+        for i in range(3):
+            print(state[i][0],state[i][1],state[i][2])
+    if len(state[0])!=0 and score(state)==0 and isfilled(state)==False:
+        pos=int(input("Your Turn, Enter position:"))
+        while state[pos//3][pos%3]!=" ":
+            print("The position is already filled,Try choosing some other position")
+            pos=int(input("Your Turn, Enter position:"))
+        state[pos//3][pos%3]="O"
+        for i in range(3):
+            print(state[i][0],state[i][1],state[i][2])
